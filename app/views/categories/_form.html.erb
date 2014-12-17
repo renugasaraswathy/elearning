@@ -1,0 +1,42 @@
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <strong>Sub Categories</strong>
+  <div>
+    <a href='#' id='add-category'>Add</a>
+    <ul id="sub_categories">
+      <% if @sub_categories %>
+      <% @sub_categories.each do |sub_category| %>
+        <li><%= text_field_tag "category[sub_categories_update][name][]",sub_category.name %></li>
+        <%= hidden_field_tag "category[sub_categories_update][slug][]",sub_category.slug %>
+      <% end %>
+      <% else %>
+      <li><%= text_field_tag "category[sub_categories_create][name][]",nil %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $( "#add-category" ).click(function() {    
+  $("#sub_categories").append("<li><input type='text' name='category[sub_categories_create][name][]' id='category_sub_categories_create_name_'></li>");
+  });
+</script>

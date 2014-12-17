@@ -1,0 +1,62 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>  
+  <div class="field">
+    <%= f.label :categories %><br>    
+    <%= select_tag "parent_category", options_from_collection_for_select(Category.parent_categories, :slug,:name),:onchange => "populate_sub_categories(this.value)" %>
+    <%= f.select('category_slug',[]) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+function fetch_sub_categories(id)
+{
+  $.ajax({
+       url: '/categories/'+id+'/sub_categories.json',       
+       error: function() {
+          $('#info').html('<p>An error has occurred</p>');
+       },
+       dataType: 'json',
+       success: function(data) {
+        $("#post_category_slug").find('option').remove().end();
+        $.each( data, function( index, value ){              
+              var o = new Option(value['name'],value['slug']);              
+              $(o).html(value['name']);              
+              $("#post_category_slug").append(o);
+          });
+       },
+       type: 'GET'
+  });
+}
+
+function populate_sub_categories(id)
+{
+  fetch_sub_categories(id);
+}
+
+$( document ).ready(function() {
+ fetch_sub_categories('<%= Category.parent_categories.first.slug %>'); 
+});
+
+</script>
