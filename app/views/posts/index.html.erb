@@ -1,4 +1,16 @@
+<div class="page-header">
+	<h4>Posts
+		<%= link_to 'New Post', new_post_path,:class=>'pull-right btn btn-primary btn-sm' %>		
+	</h4>
+
+</div>
+<div class="col-lg-12 col-md-12 list-group">
 <% @posts.each do |post| %>
-  <p><%= link_to post.title,post %></p>
+<div class="list-group-item">
+  <h4 class="list-group-item-heading"><%= link_to post.title,post %></h4>
+  <p class="list-group-item-text margin-top-sm"><%= post.short_description %></p>
+  <p class="list-group-item-text margin-top-sm"><i class="fa fa-folder-open"></i> <%= link_to post.category.parent.name,post.category.parent %> <i class="fa fa-caret-right"></i> <%= link_to post.category.name,post.category %></p>
+ </div>
 <% end %>
-<%= link_to 'New Post', new_post_path %>
+
+</div>

@@ -12,4 +12,12 @@ class Post < ActiveRecord::Base
 		self.category=Category.find_by_slug(self.category_slug) if self.category_slug
 	end
 
+  def short_description
+    if self.description.length>300
+      self.description[0..300]+"..."
+    else
+      self.description
+    end
+  end
+
 end

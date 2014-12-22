@@ -1,6 +1,7 @@
-<h1>Editing post</h1>
+<div class="page-header">
+  <h4>New Post
+    <%= link_to 'Back', @post,:class=>'pull-right btn btn-primary btn-sm' %>    
+  </h4>
 
+</div>
 <%= render 'form' %>
-
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>

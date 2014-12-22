@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+	<h4><%= @post.title %>
+		<%= link_to 'Edit', edit_post_path(@post),:class=>'pull-right btn btn-primary btn-sm  margin-left-sm' %>		
+		<%= link_to 'Back', posts_path,:class=>'pull-right btn btn-primary btn-sm' %>		
+	</h4>
+
+</div>
 <div>
 <%= @post.title %>
 </div>
@@ -8,5 +14,5 @@
 <div>
 <%= @post.category.parent.name %> > <%= @post.category.name %>
 </div>
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
+
