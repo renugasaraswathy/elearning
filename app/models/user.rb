@@ -37,4 +37,12 @@ class User < ActiveRecord::Base
     @ic.decrement if @ic
   end
 
+  def full_name
+    if self.first_name 
+    self.first_name+" "+self.last_name
+  else
+    self.email
+  end
+  end
+
 end

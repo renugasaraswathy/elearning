@@ -18,7 +18,7 @@ layout :layout_by_resource
   end
 
   def configure_permitted_parameters
-	  devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:employee_id, :email, :password, :password_confirmation,:sign_up_code) }
+	  devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:employee_id, :email, :password,:first_name,:last_name, :password_confirmation,:sign_up_code) }
 	  devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:employee_id, :password) }
   end
 

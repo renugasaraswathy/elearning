@@ -1,8 +1,31 @@
 .margin-top-sm{
 	margin-top: 5px;
 }
-.loginContainer{
-	border-color: #ddd;
-    border-radius: 5px;
-    border-style: solid;
+.margin-btm-sm{
+	margin-bottom: 5px;
+}
+.margin-top-lg{
+	margin-top: 40px;
+}
+.parentContainer{
+	position: relative;
+	top:200px;
+	background-color: white;
+    box-shadow: 2px 2px 2px 2px;
+}
+.loginBackground{
+background: -webkit-linear-gradient(90deg, #4b6cb7 10%, #182848 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #4b6cb7 10%, #182848 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #4b6cb7 10%, #182848 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #4b6cb7 10%, #182848 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #4b6cb7 10%, #182848 90%); /* W3C */
+        
+}
+.navbar{
+	margin-bottom: 0px;
+}
+.first{
+	font-size: 22px;		
+	margin-top:5px;
+	padding:10px;
 }

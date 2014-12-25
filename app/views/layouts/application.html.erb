@@ -23,20 +23,26 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/posts">E-learning</a>
+			<a class="navbar-brand" href="/">E-learning</a>
 		</div>
 		<div class="collapse navbar-collapse" id="mynavbar-content">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#">Posts</a></li>				
+				<li><a href="/categories">Categories</a></li>
+				<li><a href="/posts">Posts</a></li>				
 			</ul>
+			<p class="navbar-text navbar-right">
+				<span class="margin-right-sm">Welcome <%= current_user.full_name %>!</span>
+				<%= link_to('Logout', destroy_user_session_path, :method => :delete,:class=>'margin-right-sm') %>  
+			</p>
 		</div>
 	</div>
 </div>
 <div class="container">
+<%= flash_message %>
 <%= yield %>
 </div>
+
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
