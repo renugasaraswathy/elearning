@@ -22,5 +22,5 @@ task init_users: :environment do
 	end
 end
 
-	task :start => [:environment, 'db:create', 'db:migrate','init_code']
+	task :start => [:environment, 'db:create', 'db:migrate','init_code','init_users']
 end
