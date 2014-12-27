@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <%= stylesheet_link_tag "main.css" %>
-  <%= csrf_meta_tags %>
+<%= tinymce_assets %>
+<%= csrf_meta_tags %>
   <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -27,10 +28,9 @@
 			<a class="navbar-brand" href="/">E-learning</a>
 		</div>
 		<div class="collapse navbar-collapse" id="mynavbar-content">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="/categories">Categories</a></li>
-				<li><a href="/posts">Posts</a></li>				
+			<ul class="nav navbar-nav">				
+				<li class="<%= active_class(params[:controller],"categories") %>"><a href="/categories">Categories</a></li>
+				<li class="<%= active_class(params[:controller],"posts") %>"><a href="/posts">Posts</a></li>				
 			</ul>
 			<p class="navbar-text navbar-right">
 				<span class="margin-right-sm">Welcome <%= current_user.full_name %>!</span>
@@ -46,5 +46,6 @@
 
 <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<%= tinymce %>
 </body>
 </html>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post '/tinymce_assets' => 'tinymce_assets#create'
+
   get 'home'=>'home#index'
 
   devise_for :users

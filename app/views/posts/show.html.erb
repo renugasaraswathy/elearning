@@ -9,7 +9,7 @@
 <%= @post.title %>
 </div>
 <div>
-<%= @post.description %>
+<%=raw @post.description %>
 </div>
 <div>
 <%= @post.category.parent.name %> > <%= @post.category.name %>
