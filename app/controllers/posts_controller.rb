@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.published=1
     @post.save
     respond_with(@post)
   end

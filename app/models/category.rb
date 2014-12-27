@@ -7,7 +7,10 @@ class Category < ActiveRecord::Base
 	belongs_to :user
 	has_many :posts
 	validates :name,:presence=>true
+	before_save :validate_name
 
+	scope :parent_categories,->{where(:parent_id=>nil)}
+	scope :non_parent_categories,->{where("parent_id is not null")}
 
 	def sub_categories_create=(value)
 		value[:name].each do |n|
@@ -24,10 +27,37 @@ class Category < ActiveRecord::Base
 		end
 	end
 
-
-
-	def self.parent_categories
-		Category.where(:parent_id=>nil)
+	def posts_count
+		if self.parent_id==nil
+			count=0
+			self.sub_categories.each do |sub_category|
+				count+=sub_category.posts_count				
+			end
+		else
+			count=self.posts.count
+		end
+		return count
 	end
+
+	def posts
+		if self.parent_id
+			Post.find_threads_on_category(self.id).published.descending
+		else
+			Post.find_threads_on_category(self.sub_categories.collect(&:id)).published.descending
+		end
+	end
+
+	def validate_name
+    self.errors.add(:name,"is blank") if self.name==""    
+  end
+
+  def self.popular_categories
+  	categories_count={}
+  	Category.all.non_parent_categories.each do |cat|
+  		categories_count[cat.id]=cat.posts_count
+  	end
+  	return Hash[categories_count.sort_by{ |_, v| -v }[0..4]]
+  end
+	
 
 end

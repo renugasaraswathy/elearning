@@ -4,11 +4,13 @@ class CategoriesController < ApplicationController
   respond_to :html
 
   def index
-    @categories = Category.all
+    @categories = Category.all.parent_categories
+    @popular_categories=Category.popular_categories
     respond_with(@categories)
   end
 
   def show
+    @posts=@category.posts
     respond_with(@category)
   end
 

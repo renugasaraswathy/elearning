@@ -1,16 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+	<h4><%= @category.name %>
+		<%= link_to 'New Post', new_post_path,:class=>'pull-right btn btn-primary btn-sm' %>		
+	</h4>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
-
-<strong>Sub Categories</strong>
-<% @category.sub_categories.each do |sub| %>
-<p><%= sub.name %></p>
+</div>
+<div class="col-lg-12 col-md-12 list-group">
+<% @posts.each do |post| %>
+<%= render :partial=>'posts/post',:object=>post %>
 <% end %>
 
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+</div>

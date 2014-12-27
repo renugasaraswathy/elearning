@@ -8,6 +8,9 @@ class Post < ActiveRecord::Base
   	belongs_to :category
 	before_save :set_category,:validate_title_and_description
 
+   scope :find_threads_on_category, ->(category_id) { where(:category_id => category_id)}
+   scope :published,->{ where(:published=>1)}
+   scope :descending,->{order("created_at DESC")}
   	def set_category
 		self.category=Category.find_by_slug(self.category_slug) if self.category_slug
 	end

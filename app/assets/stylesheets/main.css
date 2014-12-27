@@ -12,3 +12,14 @@
 .margin-right-sm{
 	margin-right: 5px;
 }
+
+.margin-bottom-sm{
+	margin-bottom: 5px;
+}
+.paddingReset{
+	padding:0;
+}
+.paddingSmall{
+	padding-left: 2px;
+	padding-right: 2px;
+}
