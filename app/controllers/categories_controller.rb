@@ -20,6 +20,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    if @category.parent_id!=nil
+      @category=@category.parent
+    end
     @sub_categories=@category.sub_categories
   end
 

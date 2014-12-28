@@ -1,6 +1,7 @@
 <div class="page-header">
 	<h4><%= @category.name %>
 		<%= link_to 'New Post', new_post_path,:class=>'pull-right btn btn-primary btn-sm' %>		
+		<%= link_to 'Edit Category', edit_category_path(@category),:class=>'pull-right btn btn-primary btn-sm margin-right-sm' %>		
 	</h4>
 
 </div>

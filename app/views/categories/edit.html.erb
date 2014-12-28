@@ -1,6 +1,9 @@
-<h1>Editing category</h1>
+<div class="page-header">
+  <h4>Edit Category
+    <%= link_to 'Back', @category,:class=>'pull-right btn btn-primary btn-sm' %>    
+  </h4>
+
+</div>
+
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
