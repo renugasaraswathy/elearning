@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessor :sign_up_code       
 
   has_many :categories
-
+  has_many :posts
   validate :for_proper_invite_code,:on=>:create
   after_create :decrement_invite_code
   

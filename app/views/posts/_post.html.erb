@@ -1,13 +1,24 @@
 <div class="list-group-item">
 	<div class="media">
-			<div class="media-left">
-				<i class="fa fa-5x fa-pencil-square-o"></i>
-			</div>
+			<% if post.image_in_description %>
+				<div class="media-left">
+					<!-- <i class="fa fa-5x fa-pencil-square-o"></i> -->
+					<%= link_to "<img src= #{post.image_in_description}/>".html_safe,post %>
+				</div>
+			<% end %>
 			<div class="media-body">
 			  <h4 class="list-group-item-heading"><%= link_to post.title,post %></h4>
-			  <p class="list-group-item-text margin-top-sm"><%= post.short_description %></p>
-			  <p class="list-group-item-text margin-top-sm"><i class="fa fa-folder-open"></i> <%= link_to post.category.parent.name,post.category.parent %> <i class="fa fa-caret-right"></i> <%= link_to post.category.name,post.category %></p>
-			  <p class="list-group-item-text margin-top-sm text-muted small"><%= time_ago_in_words(post.created_at, include_seconds: true) %> ago </p>
+			  <p class="list-group-item-text margin-top-sm"><%= raw post.short_description %></p>
+			  
+			  <p class="list-group-item-text margin-top-sm text-muted small">
+			  	by <%= link_to post.user.full_name,post.user %> <%= time_ago_in_words(post.created_at, include_seconds: true) %> ago
+			  </p>
+			  <p class="list-group-item-text margin-top-sm">
+			  		<i class="fa fa-folder-open"></i> 
+			  		<%= link_to post.category.parent.name,post.category.parent %>
+			  	 	<i class="fa fa-caret-right"></i> 
+			  	 	<%= link_to post.category.name,post.category %>
+			  </p>
 			</div>
 	</div>
 </div>

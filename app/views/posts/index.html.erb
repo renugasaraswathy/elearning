@@ -5,8 +5,11 @@
 
 </div>
 <div class="col-lg-12 col-md-12 list-group">
+<% if !@posts.empty? %>
 <% @posts.each do |post| %>
 	<%= render :partial=>'post',:object=>post %>
 <% end %>
-
+<% else %>
+	<p>No posts yet</p>
+<% end %>
 </div>

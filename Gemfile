@@ -31,6 +31,9 @@ gem 'spring',        group: :development
 gem 'tinymce-rails'
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem "paperclip", "~> 4.2"
+
+#To scan text for image tags 
+gem 'nokogiri'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

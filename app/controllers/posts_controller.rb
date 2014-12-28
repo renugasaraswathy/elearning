@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   respond_to :html
 
   def index
-    @posts = Post.all
+    @posts = Post.all.descending
     respond_with(@posts)
   end
 
@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user=current_user
     @post.published=1
     @post.save
     respond_with(@post)

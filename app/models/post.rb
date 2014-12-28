@@ -6,7 +6,8 @@ class Post < ActiveRecord::Base
   	validate :description,:length=>{:minimum=>10}
   	attr_accessor :category_slug  	
   	belongs_to :category
-	before_save :set_category,:validate_title_and_description
+    belongs_to :user
+  	before_save :set_category,:validate_title_and_description
 
    scope :find_threads_on_category, ->(category_id) { where(:category_id => category_id)}
    scope :published,->{ where(:published=>1)}
@@ -22,11 +23,21 @@ class Post < ActiveRecord::Base
 
 
   def short_description
-    if self.description.length>300
-      self.description[0..300]+"..."
+    desc=ActionController::Base.helpers.strip_tags(self.description)        
+    if desc.length>300
+      desc=desc[0..300]+"..."
     else
-      self.description
+      desc
     end
+    return desc
   end
+
+  def image_in_description
+    doc = Nokogiri::HTML( self.description )
+    img_srcs = doc.css('img').map{ |i| i['src'] } # Array of strings
+    if !img_srcs.empty?
+      img_srcs.first.gsub(/original/, 'thumb')
+    end
+  end  
 
 end
