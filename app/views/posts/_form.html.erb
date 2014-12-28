@@ -21,9 +21,14 @@
     <%= f.text_area :description,:class=>'form-control tinymce' %>
   </div>  
   <div class="form-group">
-    <%= f.label :categories %><br>    
-    <%= select_tag "parent_category", options_from_collection_for_select(Category.parent_categories, :slug,:name),:onchange => "populate_sub_categories(this.value)" %>
-    <%= f.select('category_slug',[]) %>
+    <%= f.label :categories %><br>
+    <% if @post.category %>
+      <%= select_tag "parent_category", options_from_collection_for_select(Category.parent_categories, :slug,:name,@post.category.parent.slug),:onchange => "populate_sub_categories(this.value)" %>
+      <%= f.select('category_slug',options_from_collection_for_select(@post.category.parent.sub_categories,:slug,:name,@post.category.slug)) %>  
+    <% else %>
+      <%= select_tag "parent_category", options_from_collection_for_select(Category.parent_categories, :slug,:name),:onchange => "populate_sub_categories(this.value)" %>
+      <%= f.select('category_slug',[]) %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit "Submit",:class=>'btn btn-primary'%>
@@ -57,7 +62,9 @@ function populate_sub_categories(id)
 }
 
 $( document ).ready(function() {
+  <% unless @post.category %>
  fetch_sub_categories('<%= Category.parent_categories.first.slug %>'); 
+  <%  end %>
 });
 
 </script>
